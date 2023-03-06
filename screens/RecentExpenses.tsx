@@ -8,11 +8,15 @@ const RecentExpenses = ({}) => {
   const filteredExpenses = context.expenses.filter((expense) => {
     const today = new Date();
     const date7daysago = getDateMinusDay(today, 7);
-    return expense.date > date7daysago;
+    return expense.date > date7daysago && expense.date <= today;
   });
 
   return (
-    <ExpensesOutput expenses={filteredExpenses} expensesPeriod="Last 7 Days" />
+    <ExpensesOutput
+      expenses={filteredExpenses}
+      expensesPeriod="Last 7 Days"
+      fallbackText={"No Expenses Registered in Last 7 Days"}
+    />
   );
 };
 

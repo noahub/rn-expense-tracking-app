@@ -1,7 +1,7 @@
 export function expensesReducer(state: State, action: Action) {
   switch (action.type) {
     case "ADD":
-      const id = crypto.randomUUID();
+      const id = new Date().toString() + Math.random().toString();
       return [{ ...action.payload, id }, ...state];
     case "UPDATE":
       const itemIndex = state.findIndex((item) => {

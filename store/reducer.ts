@@ -1,8 +1,10 @@
 export function expensesReducer(state: State, action: Action) {
   switch (action.type) {
     case "ADD":
-      const id = new Date().toString() + Math.random().toString();
-      return [{ ...action.payload, id }, ...state];
+      return [action.payload, ...state];
+    case "SET":
+      const reversed = action.payload.reverse();
+      return reversed;
     case "UPDATE":
       const itemIndex = state.findIndex((item) => {
         item.id === action.payload.id;
@@ -40,4 +42,5 @@ type Action =
   | {
       type: "DELETE";
       payload: Expense["id"];
-    };
+    }
+  | { type: "SET"; payload: Expense[] };
